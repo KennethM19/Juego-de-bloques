@@ -6,12 +6,13 @@ width, height = 640, 480
 background_color = (0,64,0) #Color RGB
 font_color = (255,255,255)
 
-#Creación de escena
+#Elementos principales
 class Scene:
     def __init__(self):
         "Inicilizando"
         self.nextScene = False
-        self.playing = True
+        self.playing = False
+        self.menu = True
     
     def read_events(self, event):
         "Lectura de los eventos"
@@ -75,6 +76,7 @@ class Director:
         sceneObject = globals()[sceneClass]
         self.scenes[scene] = sceneObject()
 
+#Generación de escenas
 class SceneLevel1(Scene):
     def __init__(self):
         Scene.__init__(self)
@@ -173,6 +175,8 @@ class SceneEndGame(Scene):
         screen.blit(text,text_rect)
 
 
+
+    
 #Creación de objetos
 class Ball(pygame.sprite.Sprite):
     def __init__(self):
