@@ -25,6 +25,8 @@ class LevelOne(Scene):
         self.lives = 3
         self.waitStart = True
 
+        pygame.key.set_repeat(30)
+
     def read_events(self, events):
         for event in events:
             if event.type == pygame.KEYDOWN:
@@ -37,7 +39,7 @@ class LevelOne(Scene):
                         self.ball.speed = [3, -3]
 
     def update(self):
-        if self.waitStart == False:
+        if not self.waitStart:
             self.ball.update()
         else:
             self.ball.rect.midbottom = self.player.rect.midtop
@@ -61,25 +63,15 @@ class LevelOne(Scene):
             self.waitStart = True
 
         if self.lives == 0:
-            self.play = False
+            self.change_scene("GAME OVER")
 
     def draw(self, screen):
         screen.fill(background_green)
-        self.show_score()
-        self.show_lives()
+        self.show_score(screen)
+        self.show_lives(screen)
         screen.blit(self.ball.image, self.ball.rect)
         screen.blit(self.player.image, self.player.rect)
         self.walls.draw(screen)
-
-    def end_game(self, screen):
-        font = pygame.font.SysFont('Arial', 60)
-        text = font.render('GAME OVER', True, whiteColor)
-        text_rect = text.get_rect()
-        text_rect.center = (width / 2, height / 2)
-        screen.blit(text, text_rect)
-        pygame.display.flip()
-        time.sleep(3)
-        sys.exit()
 
     def show_score(self, screen):
         font = pygame.font.SysFont('Consolas', 20)

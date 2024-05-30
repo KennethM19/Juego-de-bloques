@@ -9,7 +9,7 @@ class Scene:
     def update(self):
         pass
 
-    def draw(self):
+    def draw(self, screen):
         pass
 
     def change_scene(self, scene):
