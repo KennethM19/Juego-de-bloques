@@ -3,6 +3,7 @@ import pygame
 width = 640
 height = 480
 
+
 class Ball(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -14,7 +15,7 @@ class Ball(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.move_ip(self.speed)
-        if self.rect.bottom >= height or self.rect.top <= 0:
+        if self.rect.top <= 0:
             self.speed[1] = -self.speed[1]
         elif self.rect.right >= width or self.rect.left <= 0:
             self.speed[0] = -self.speed[0]
