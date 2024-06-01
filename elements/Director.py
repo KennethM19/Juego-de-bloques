@@ -1,13 +1,15 @@
 import time
 
 import pygame
+from levels.LevelOne import LevelOne
+from levels.EndGame import EndGame
 
 
 class Director:
-    def __init__(self):
+    def __init__(self, title = ""):
         pygame.init()
-        self.screen = pygame.display.set_mode((800, 600))
-        pygame.display.set_caption('JUEGOS BLOQUES')
+        self.screen = pygame.display.set_mode((640, 480))
+        pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
         self.scene = None
         self.scenes = {}
@@ -39,8 +41,13 @@ class Director:
         if next_scene:
             if next_scene not in self.scenes:
                 self.add_scene(next_scene)
+            self.scene = self.scenes[next_scene]
 
     def add_scene(self, scene):
-        sceneClass = 'Scene' + scene
-        sceneObj = globals()[sceneClass]
-        self.scenes[sceneObj] = sceneObj()
+        dict_scene = {
+            'LevelOne': LevelOne,
+            'End Game': EndGame,
+        }
+        sceneClass = dict_scene.get(scene)
+        if sceneClass:
+            self.scenes[scene] = sceneClass()

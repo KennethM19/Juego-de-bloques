@@ -1,6 +1,3 @@
-import sys
-import time
-
 import pygame
 
 from elements.Ball import Ball
@@ -31,7 +28,7 @@ class LevelOne(Scene):
         for event in events:
             if event.type == pygame.KEYDOWN:
                 self.player.update()
-                if self.waitStart == True and event.key == pygame.K_ESCAPE:
+                if self.waitStart and event.key == pygame.K_ESCAPE:
                     self.waitStart = False
                     if self.ball.rect.centerx < width / 2:
                         self.ball.speed = [3, -3]

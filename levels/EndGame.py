@@ -1,13 +1,9 @@
-import sys
-import time
-
 import pygame
 
 from elements.Scene import Scene
 
 width = 640
 height = 480
-background_green = (0, 63, 0)
 whiteColor = (255, 255, 255)
 
 
