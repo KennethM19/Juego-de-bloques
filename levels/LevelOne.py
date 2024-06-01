@@ -27,8 +27,8 @@ class LevelOne(Scene):
     def read_events(self, events):
         for event in events:
             if event.type == pygame.KEYDOWN:
-                self.player.update()
-                if self.waitStart and event.key == pygame.K_ESCAPE:
+                self.player.update(event)
+                if self.waitStart and event.key == pygame.K_SPACE:
                     self.waitStart = False
                     if self.ball.rect.centerx < width / 2:
                         self.ball.speed = [3, -3]
@@ -42,9 +42,9 @@ class LevelOne(Scene):
             self.ball.rect.midbottom = self.player.rect.midtop
 
         if pygame.sprite.collide_rect(self.ball, self.player):
-            self.ball.speed = -self.ball.speed
+            self.ball.speed[1] = -self.ball.speed[1]
 
-        list = pygame.sprite.spritecollide(self.player, self.walls, False)
+        list = pygame.sprite.spritecollide(self.ball, self.walls, False)
         if list:
             wall = list[0]
             centerx = self.ball.rect.centerx

@@ -19,3 +19,4 @@ class Ball(pygame.sprite.Sprite):
             self.speed[1] = -self.speed[1]
         elif self.rect.right >= width or self.rect.left <= 0:
             self.speed[0] = -self.speed[0]
+

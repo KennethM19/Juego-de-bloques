@@ -28,7 +28,7 @@ class Director:
             self.scene.update()
             self.scene.draw(self.screen)
 
-            self.scene.choose_scene(self.scene.next_scene)
+            self.choose_scene(self.scene.next_scene)
 
             if play:
                 play = self.scene.play
@@ -46,7 +46,7 @@ class Director:
     def add_scene(self, scene):
         dict_scene = {
             'LevelOne': LevelOne,
-            'End Game': EndGame,
+            'EndGame': EndGame,
         }
         sceneClass = dict_scene.get(scene)
         if sceneClass:
